@@ -1,0 +1,409 @@
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select ename from emp where(select deptno from emp where ename='MILLER');
+select ename from emp where(select deptno from emp where ename='MILLER')
+                                                                       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select ename from emp where deptno=(select deptno from emp where ename='MILLER');
+
+ENAME
+----------
+CLARK
+KING
+MILLER
+
+SQL> select ename from emp where sal=(select max(sal) from emp);
+
+ENAME
+----------
+KING
+
+SQL> select ename from emp where sal>(select min(sal) from emp where deptno=30);
+
+ENAME
+----------
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+FORD
+MILLER
+
+12 rows selected.
+
+SQL> select ename from emp where (job=(select job from emp where ename='FORD') and sal=(select sal from emp where ename='FORD'));
+
+ENAME
+----------
+SCOTT
+FORD
+
+SQL> select ename from emp where sal=(select min(sal) from emp);
+
+ENAME
+----------
+SMITH
+
+SQL> select ename from emp where deptno=((deptno=10) and (select job from emp where deptno<>30));
+select ename from emp where deptno=((deptno=10) and (select job from emp where deptno<>30))
+                                           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select ename from emp where deptno=((deptno=10) and (select job from emp where deptno<>30)));
+select ename from emp where deptno=((deptno=10) and (select job from emp where deptno<>30)))
+                                           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select ename from emp where mgr=(select empno from emp);
+select ename from emp where mgr=(select empno from emp)
+                                 *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select ename from emp having mgr=(select empno from emp);
+select ename from emp having mgr=(select empno from emp)
+                             *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> select ename from emp where any mgr=(select empno from emp);
+select ename from emp where any mgr=(select empno from emp)
+                            *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select ename from emp where any ename=(select empno from emp where mgr='BLAKE');
+select ename from emp where any ename=(select empno from emp where mgr='BLAKE')
+                            *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select ename from emp where ename=(select ename from emp where mgr='BLAKE');
+select ename from emp where ename=(select ename from emp where mgr='BLAKE')
+                                                                   *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> select ename from emp where ename=(select ename from emp where ename='BLAKE');
+
+ENAME
+----------
+BLAKE
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select ename from emp where deptno=(select deptno from dept where loc='CHICAGO');
+
+ENAME
+----------
+ALLEN
+WARD
+MARTIN
+BLAKE
+TURNER
+JAMES
+
+6 rows selected.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select ename from emp where sal>(select sal from emp where ename='JONES');
+
+ENAME
+----------
+SCOTT
+KING
+FORD
+
+SQL> select ename from emp where sal=(select sal from emp where ename='SCOTT' or 'FORD');
+select ename from emp where sal=(select sal from emp where ename='SCOTT' or 'FORD')
+                                                                                  *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select ename from emp where sal=(select sal from emp where ename='SCOTT' or ename='FORD');
+select ename from emp where sal=(select sal from emp where ename='SCOTT' or ename='FORD')
+                                 *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select ename from emp where ALL sal=(select sal from emp where ename='SCOTT' or ename='FORD');
+select ename from emp where ALL sal=(select sal from emp where ename='SCOTT' or ename='FORD')
+                            *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select ename from emp where job=(select job from emp where deptno=(select deptno from dept where loc='CHICAGO'));
+select ename from emp where job=(select job from emp where deptno=(select deptno from dept where loc='CHICAGO'))
+                                 *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select ename from emp where job in (select job from emp where deptno=(select deptno from dept where loc='CHICAGO'));
+
+ENAME
+----------
+TURNER
+MARTIN
+WARD
+ALLEN
+CLARK
+BLAKE
+JONES
+MILLER
+JAMES
+ADAMS
+SMITH
+
+11 rows selected.
+
+SQL> select ename from emp where sal in (select sal from emp where ename='SCOTT' or ename='FORD');
+
+ENAME
+----------
+FORD
+SCOTT
+
+SQL> select ename from emp where empno in (select mgr from emp where ename='BLAKE');
+
+ENAME
+----------
+KING
+
+SQL> select ename from emp where mgr in (select empno from emp where ename='BLAKE');
+
+ENAME
+----------
+TURNER
+ALLEN
+WARD
+JAMES
+MARTIN
+
+SQL> select ename from emp where deptno in ((deptno=10) and (select job from emp where deptno<>30)));
+select ename from emp where deptno in ((deptno=10) and (select job from emp where deptno<>30)))
+                                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select ename from emp where deptno in ((deptno=10) and (select job from emp where deptno<>30));
+select ename from emp where deptno in ((deptno=10) and (select job from emp where deptno<>30))
+                                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select ename from emp where job in (select job from emp where ename='JONES');
+
+ENAME
+----------
+CLARK
+BLAKE
+JONES
+
+SQL> select * from emp where job in (select job from emp where ename='JONES');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+
+SQL> select * from emp where sal>(select sal from emp where deptno=30);
+select * from emp where sal>(select sal from emp where deptno=30)
+                             *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select * from emp where any sal>(select sal from emp where deptno=30);
+select * from emp where any sal>(select sal from emp where deptno=30)
+                        *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp where sal>(select min(sal) from emp where deptno=30);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+12 rows selected.
+
+SQL> select * from emp where sal>(select max(sal) from emp where deptno=30);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+SQL> select ename from emp where deptno in (deptno=10 and select job from emp where deptno<>30);
+select ename from emp where deptno in (deptno=10 and select job from emp where deptno<>30)
+                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select ename from emp where deptno in (deptno=10) and (select job from emp where deptno<>30);
+select ename from emp where deptno in (deptno=10) and (select job from emp where deptno<>30)
+                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL>
