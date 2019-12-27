@@ -1,0 +1,1513 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Thu Dec 26 21:52:41 2019
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> select * fr
+  2  .
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * fr
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * fr
+SQL> /
+select * fr
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp;
+SQL> /
+select * from emp;
+                 *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp;
+SQL> /
+select * from emp;
+                 *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp;
+  2  .
+SQL> /
+select * from emp;
+                 *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800
+        20
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000
+        20
+
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7902 FORD       ANALYST         7566 03-DEC-81       3000
+        20
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+14 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800
+        20
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000
+        20
+
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7902 FORD       ANALYST         7566 03-DEC-81       3000
+        20
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+14 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> /
+Enter value for a: 2
+old   2: a number:=&a;
+new   2: a number:=2;
+Enter value for b: 3
+old   3: b number:=&b;
+new   3: b number:=3;
+SP2-0552: Bind variable "C" not declared.
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> variable c number;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> /
+Enter value for a: 2
+old   2: a number:=&a;
+new   2: a number:=2;
+Enter value for b: 3
+old   3: b number:=&b;
+new   3: b number:=3;
+
+PL/SQL procedure successfully completed.
+
+SQL> print c;
+
+         C
+----------
+         5
+
+SQL> variable c number;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> print c;
+
+         C
+----------
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> variable c number;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> /
+Enter value for a: 2
+old   2: a number:=&a;
+new   2: a number:=2;
+Enter value for b: 3
+old   3: b number:=&b;
+new   3: b number:=3;
+
+PL/SQL procedure successfully completed.
+
+SQL> print c;
+
+         C
+----------
+         5
+
+SQL> variable p_name varchar2(10)
+SQL> variable p_job varchar2(10)
+SQL> variable p_sal number
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> /
+Enter value for a: 67
+old   2: a number:=&a;
+new   2: a number:=67;
+Enter value for b: 7
+old   3: b number:=&b;
+new   3: b number:=7;
+
+PL/SQL procedure successfully completed.
+
+SQL> variable p_name varchar2(10)
+SQL> variable p_job varchar2(10)
+SQL> variable p_sal number
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  a number:=&a;
+  3  b number:=&b;
+  4  begin
+  5  :c:=a+b;
+  6* end;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  s_empno emp.empno%type:=&s_empno;
+  3  begin
+  4  select ename,job,sal into :p_name,:p_job,:p_sal from emp
+  5  where empno=s_empno;
+  6* end;
+SQL> variable p_name varchar2(10)
+SQL> variable p_job varchar2(10)
+SQL> variable p_sal number
+SQL> /
+Enter value for s_empno: 7900
+old   2: s_empno emp.empno%type:=&s_empno;
+new   2: s_empno emp.empno%type:=7900;
+
+PL/SQL procedure successfully completed.
+
+SQL> print p_name p_job p_sal;
+
+P_NAME
+--------------------------------
+JAMES
+
+
+P_JOB
+--------------------------------
+CLERK
+
+
+     P_SAL
+----------
+       950
+
+SQL> create sequence s11 start with 1 increment by 1 maxvalue 20;
+
+Sequence created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_new_id number;
+  3  begin
+  4  v_new_id:=s11.nextval;
+  5* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_new_id number;
+  3  begin
+  4  v_new_id:=s11.nextval;
+  5  DBMS_output.put_line(v_new_id);
+  6* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  s_empno emp.empno%type:=&s_empno;
+  3  begin
+  4  select ename,job,sal into :p_name,:p_job,:p_sal from emp
+  5  where empno=s_empno;
+  6  end;
+  7  .
+SQL> ed
+Wrote file afiedt.buf
+
+  1   declare
+  2    v_new_id number;
+  3      begin
+  4      v_new_id:=s11.nextval;
+  5      dbms_output.put_line(v_new_id);
+  6*    end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> create sequence s1 start with 1 increment by 1 maxvalue 20;
+
+Sequence created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1   declare
+  2    v_new_id number;
+  3    begin
+  4      v_new_id:=s1.nextval;
+  5      DBMS_output.put_line(v_new_id);
+  6*    end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  declare
+  3  v_father_name varchar2(20):='Patrick';
+  4  v_date_of_birth date:='20-Apr-1972';
+  5  begin
+  6  declare
+  7  v_child_name varchar2(20):='Mike';
+  8  v_date_of_birth date:='12-Dec-2002';
+  9  begin
+ 10  dbms_output.put_line('Father''s Name: '||v_father_name);
+ 11  dbms_output.put_line('Date of Birth: '||outer.v_date_of_birth);
+ 12  dbms_output.put_line('Child''s Name: '||v_child_name);
+ 13  dbms_output.put_line('Date of Birth: '||v_date_of_birth);
+ 14  end;
+ 15  end;
+ 16* end outer;
+SQL> /
+dbms_output.put_line('Date of Birth: '||outer.v_date_of_birth);
+                                        *
+ERROR at line 11:
+ORA-06550: line 11, column 41:
+PLS-00201: identifier 'OUTER.V_DATE_OF_BIRTH' must be declared
+ORA-06550: line 11, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin <<outer>>
+  2  declare
+  3  v_father_name varchar2(20):='Patrick';
+  4  v_date_of_birth date:='20-Apr-1972';
+  5  begin
+  6  declare
+  7  v_child_name varchar2(20):='Mike';
+  8  v_date_of_birth date:='12-Dec-2002';
+  9  begin
+ 10  dbms_output.put_line('Father''s Name: '||v_father_name);
+ 11  dbms_output.put_line('Date of Birth: '||outer.v_date_of_birth);
+ 12  dbms_output.put_line('Child''s Name: '||v_child_name);
+ 13  dbms_output.put_line('Date of Birth: '||v_date_of_birth);
+ 14  end;
+ 15  end;
+ 16* end outer;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> /
+Father's Name: Patrick
+Date of Birth: 20-APR-72
+Child's Name: Mike
+Date of Birth: 12-DEC-02
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_myage number:=31;
+  3  begin
+  4  if v_myage<11 then
+  5  dbms_output.put_line('I am a child');
+  6  elsif v_myage<20 then
+  7  dbms_output.put_line('I am young');
+  8  elsif v_myage<30 then
+  9  dbms_output.put_line('I am in my twenties');
+ 10  elsif v_myage<40 then
+ 11  dbms_output.put_line('I am in my thirties');
+ 12  else
+ 13  dbms_output.put_line('I am always young');
+ 14  end if;
+ 15* end;
+SQL> set serveroutput on
+SQL> /
+I am in my thirties
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  v_count:=v_count+1;
+  6  exit when v_count>10;
+  7  dbms_output.put_line(v_count);
+  8  end loop;
+  9* end;
+SQL> /
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  exit when v_count>10;
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  exit if v_count>10;
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+exit if v_count>10;
+     *
+ERROR at line 5:
+ORA-06550: line 5, column 6:
+PLS-00103: Encountered the symbol "IF" when expecting one of the following:
+; when <an identifier> <a double-quoted delimited-identifier>
+The symbol ";" was substituted for "IF" to continue.
+ORA-06550: line 5, column 19:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+* & - + / at mod remainder rem then <an exponent (**)> and or
+|| multiset
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  exit while v_count>10;
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+exit while v_count>10;
+           *
+ERROR at line 5:
+ORA-06550: line 5, column 12:
+PLS-00103: Encountered the symbol "V_COUNT" when expecting one of the
+following:
+. ; when
+The symbol "when" was substituted for "V_COUNT" to continue.
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  exit when v_count>10;
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  while v_count>10;
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+while v_count>10;
+                *
+ERROR at line 5:
+ORA-06550: line 5, column 17:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+* & - + / at loop mod remainder rem <an exponent (**)> and or
+|| multiset
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  while v_count>10
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+dbms_output.put_line(v_count);
+*
+ERROR at line 6:
+ORA-06550: line 6, column 1:
+PLS-00103: Encountered the symbol "DBMS_OUTPUT" when expecting one of the
+following:
+* & - + / at loop mod remainder rem <an exponent (**)> and or
+|| multiset
+The symbol "*" was substituted for "DBMS_OUTPUT" to continue.
+ORA-06550: line 6, column 30:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at loop mod remainder rem <an exponent (**)>
+and or ||
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  exit while v_count>10
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+exit while v_count>10
+           *
+ERROR at line 5:
+ORA-06550: line 5, column 12:
+PLS-00103: Encountered the symbol "V_COUNT" when expecting one of the
+following:
+. ; when
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  while v_count<=10
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+dbms_output.put_line(v_count);
+*
+ERROR at line 6:
+ORA-06550: line 6, column 1:
+PLS-00103: Encountered the symbol "DBMS_OUTPUT" when expecting one of the
+following:
+* & - + / at loop mod remainder rem <an exponent (**)> and or
+|| multiset
+The symbol "*" was substituted for "DBMS_OUTPUT" to continue.
+ORA-06550: line 6, column 30:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at loop mod remainder rem <an exponent (**)>
+and or ||
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_count number(2):=1;
+  3  begin
+  4  loop
+  5  while v_count<=10
+  6  dbms_output.put_line(v_count);
+  7  v_count:=v_count+1;
+  8  end loop;
+  9* end;
+SQL> /
+dbms_output.put_line(v_count);
+*
+ERROR at line 6:
+ORA-06550: line 6, column 1:
+PLS-00103: Encountered the symbol "DBMS_OUTPUT" when expecting one of the
+following:
+* & - + / at loop mod remainder rem <an exponent (**)> and or
+|| multiset
+The symbol "*" was substituted for "DBMS_OUTPUT" to continue.
+ORA-06550: line 6, column 30:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at loop mod remainder rem <an exponent (**)>
+and or ||
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  i number(10):=0;
+  3  j number(10):=0;
+  4  begin
+  5  loop
+  6  while(i<4)
+  7  {
+  8     loop
+  9     while(j<4)
+ 10     {
+ 11             dbms_output.put_line('*');
+ 12             j:=j+1;
+ 13     }
+ 14     end loop;
+ 15     i:=i+1;
+ 16  }
+ 17  end loop;
+ 18* end;
+SQL> /
+{
+*
+ERROR at line 7:
+ORA-06550: line 7, column 1:
+PLS-00103: Encountered the symbol "{" when expecting one of the following:
+* & = - + < / > at in is loop mod remainder not rem
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec between overlaps || multiset year day member
+submultiset
+The symbol "{" was ignored.
+ORA-06550: line 10, column 2:
+PLS-00103: Encountered the symbol "{" when expecting one of the following:
+* & = - + < / > at in is loop mod remainder not rem
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec between overlaps || multiset
+ORA-06550: line 11, column 28:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & = - + < / > at in is loop mod remainder not rem
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec between || member sub
+ORA-06550: line 13, column 2:
+PLS-00103: Encountered the symbol "}" when expecting one of the following:
+( begin case declare end exit for goto if loop mo
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10):=0;
+  4  j number(10):=0;
+  5  begin
+  6  loop
+  7  for i in 1..n
+  8  {
+  9     loop
+ 10     for j in 1..i
+ 11     {
+ 12             dbms_output.put_line('*');
+ 13             j:=j+1;
+ 14     }
+ 15     end loop;
+ 16     i:=i+1;
+ 17  }
+ 18  end loop;
+ 19* end;
+SQL> /
+{
+*
+ERROR at line 8:
+ORA-06550: line 8, column 1:
+PLS-00103: Encountered the symbol "{" when expecting one of the following:
+. ( * @ % & - + / at loop mod remainder rem
+<an exponent (**)> || multiset
+The symbol "{" was ignored.
+ORA-06550: line 11, column 2:
+PLS-00103: Encountered the symbol "{" when expecting one of the following:
+. ( * @ % & - + / at loop mod remainder rem
+<an exponent (**)> || multiset
+The symbol ". was inserted before "{" to continue.
+ORA-06550: line 12, column 28:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at loop mod remainder rem <an exponent (**)>
+|| multiset
+ORA-06550: line 14, column 2:
+PLS-00103: Encountered the symbol "}" when expecting one of the following:
+( begin case declare end exception exit for goto if loop mod
+null pragma raise return select update while with
+<an identifier> <a double-quoted delimited
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10):=0;
+  4  j number(10):=0;
+  5  begin
+  6  loop
+  7  for i in 1..n
+  8     loop
+  9     for j in 1..i
+ 10             dbms_output.put_line('*');
+ 11             j:=j+1;
+ 12     end loop;
+ 13     i:=i+1;
+ 14  end loop;
+ 15* end;
+ 16  /
+                dbms_output.put_line('*');
+                *
+ERROR at line 10:
+ORA-06550: line 10, column 3:
+PLS-00103: Encountered the symbol "DBMS_OUTPUT" when expecting one of the
+following:
+. ( * @ % & - + / at loop mod remainder rem
+<an exponent (**)> || multiset
+The symbol "." was substituted for "DBMS_OUTPUT" to continue.
+ORA-06550: line 10, column 28:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at loop mod remainder rem <an exponent (**)>
+|| multiset
+ORA-06550: line 13, column 2:
+PLS-00103: Encountered the symbol "I" when expecting one of the following:
+end not pragma final instantiable order overriding static
+member constructor map
+ORA-06550: line 13, column 8:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+) , * & = - + < / > at in is mod remainder not rem
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2
+like4 likec between || member submultiset
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10);
+  4  j number(10);
+  5  begin
+  6  loop
+  7  for i in 1..n
+  8     loop
+  9     for j in 1..i
+ 10             dbms_output.put_line('*');
+ 11     end loop;
+ 12     dbms_output.new_line;
+ 13  end loop;
+ 14* end;
+SQL> /
+                dbms_output.put_line('*');
+                *
+ERROR at line 10:
+ORA-06550: line 10, column 3:
+PLS-00103: Encountered the symbol "DBMS_OUTPUT" when expecting one of the
+following:
+. ( * @ % & - + / at loop mod remainder rem
+<an exponent (**)> || multiset
+The symbol "." was substituted for "DBMS_OUTPUT" to continue.
+ORA-06550: line 10, column 28:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at loop mod remainder rem <an exponent (**)>
+|| multiset
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10);
+  4  j number(10);
+  5  begin
+  6     for i in 1..n
+  7     loop
+  8             for j in 1..i
+  9             loop
+ 10                     dbms_output.put_line('*');
+ 11             end loop;
+ 12             dbms_output.new_line;
+ 13     end loop;
+ 14* end;
+SQL> /
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10);
+  4  j number(10);
+  5  begin
+  6     for i in 1..n
+  7     loop
+  8             for j in 1..i
+  9             loop
+ 10                     dbms_output.put_line('*');
+ 11             end loop;
+ 12     --      dbms_output.new_line;
+ 13     end loop;
+ 14* end;
+SQL> /
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10);
+  4  j number(10);
+  5  begin
+  6     for i in 1..n
+  7     loop
+  8             for j in 1..i
+  9             loop
+ 10                     dbms_output.put_line('*');
+ 11             end loop;
+ 12     --      dbms_output.new_line;
+ 13     end loop;
+ 14* end;
+SQL> /
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10);
+  4  j number(10);
+  5  begin
+  6     for i in 1..n
+  7     loop
+  8             for j in 1..i
+  9             loop
+ 10                     dbms_output.put_line('*');
+ 11             end loop;
+ 12     /*      dbms_output.new_line; */
+ 13     end loop;
+ 14* end;
+SQL> /
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10);
+  4  j number(10);
+  5  begin
+  6     for i in 1..n
+  7     loop
+  8             for j in 1..i
+  9             loop
+ 10                     dbms_output.put('*');
+ 11             end loop;
+ 12             dbms_output.new_line;
+ 13     end loop;
+ 14* end;
+SQL> /
+*
+**
+***
+****
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number(10):=4;
+  3  i number(10);
+  4  j number(10);
+  5  begin
+  6     for i in 1..n
+  7     loop
+  8             for j in 1..i
+  9             loop
+ 10                     dbms_output.put('*');
+ 11             end loop;
+ 12             dbms_output.new_line;
+ 13     end loop;
+ 14* end;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number:=4;
+  3  i number;
+  4  j number;
+  5  begin
+  6     for 1..n
+  7     loop
+  8             for 1..i
+  9             loop
+ 10             dbms_output.put('*');
+ 11             end loop;
+ 12     dbms_output.new_line;
+ 13     end loop;
+ 14* end;
+SQL> /
+        for 1..n
+            *
+ERROR at line 6:
+ORA-06550: line 6, column 6:
+PLS-00103: Encountered the symbol "1" when expecting one of the following:
+<an identifier> <a double-quoted delimited-identifier>
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  n number:=4;
+  3  i number;
+  4  j number;
+  5  begin
+  6     for i in 1..n
+  7     loop
+  8             for j in 1..i
+  9             loop
+ 10             dbms_output.put('*');
+ 11             end loop;
+ 12     dbms_output.new_line;
+ 13     end loop;
+ 14* end;
+SQL> /
+*
+**
+***
+****
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_emp emp%rowtype;
+  3  v_empno emp.empno%type:=&v_empno;
+  4  begin
+  5  select * into v_emp
+  6  from emp
+  7  where empno=v_empno;
+  8  dbms_output.putline(v_emp.ename||' '||v_emp.sal);
+  9* end;
+SQL> /
+Enter value for v_empno: 7900
+old   3: v_empno emp.empno%type:=&v_empno;
+new   3: v_empno emp.empno%type:=7900;
+dbms_output.putline(v_emp.ename||' '||v_emp.sal);
+            *
+ERROR at line 8:
+ORA-06550: line 8, column 13:
+PLS-00302: component 'PUTLINE' must be declared
+ORA-06550: line 8, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> set serveroutput on
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_emp emp%rowtype;
+  3  v_empno emp.empno%type:=&v_empno;
+  4  begin
+  5  select * into v_emp
+  6  from emp
+  7  where empno=v_empno;
+  8  dbms_output.put_line(v_emp.ename||' '||v_emp.sal);
+  9* end;
+SQL> /
+Enter value for v_empno: 7900
+old   3: v_empno emp.empno%type:=&v_empno;
+new   3: v_empno emp.empno%type:=7900;
+JAMES 950
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from m1;
+
+no rows selected
+
+SQL> select * from t1;
+
+no rows selected
+
+SQL> select * from t11;
+
+NAME            REGNO DOB
+---------- ---------- ---------
+stuti              10 25-DEC-19
+sneh               20 25-DEC-19
+sambhav            20 25-DEC-19
+
+SQL> set serveroutput pn
+SP2-0265: serveroutput must be set ON or OFF
+SQL> set serveroutput on
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_emp emp%rowtype;
+  3  v_empno emp.empno%type:=&v_empno;
+  4  begin
+  5  select * into v_emp
+  6  from emp
+  7  where empno=v_empno;
+  8  insert into t11 values(v_emp.sal,v_emp.ename);
+  9  dbms_output.put_line(v_emp.ename||' '||v_emp.sal);
+ 10* end;
+SQL> /
+Enter value for v_empno: 7900
+old   3: v_empno emp.empno%type:=&v_empno;
+new   3: v_empno emp.empno%type:=7900;
+insert into t11 values(v_emp.sal,v_emp.ename);
+            *
+ERROR at line 8:
+ORA-06550: line 8, column 13:
+PL/SQL: ORA-00947: not enough values
+ORA-06550: line 8, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_emp emp%rowtype;
+  3  v_empno emp.empno%type:=&v_empno;
+  4  begin
+  5  select * into v_emp
+  6  from emp
+  7  where empno=v_empno;
+  8  insert into t11 values(v_emp.sal,v_emp.ename);
+  9  dbms_output.put_line(v_emp.ename||' '||v_emp.sal);
+ 10* end;
+SQL> select * t11;
+select * t11
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select *  from t11;
+
+NAME            REGNO DOB
+---------- ---------- ---------
+stuti              10 25-DEC-19
+sneh               20 25-DEC-19
+sambhav            20 25-DEC-19
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_emp emp%rowtype;
+  3  v_empno emp.empno%type:=&v_empno;
+  4  begin
+  5  select * into v_emp
+  6  from emp
+  7  where empno=v_empno;
+  8  insert into t11 values(v_emp.sal,v_emp.ename);
+  9  dbms_output.put_line(v_emp.ename||' '||v_emp.sal);
+ 10* end;
+ 11  .
+SQL> /
+Enter value for v_empno: 7900
+old   3: v_empno emp.empno%type:=&v_empno;
+new   3: v_empno emp.empno%type:=7900;
+insert into t11 values(v_emp.sal,v_emp.ename);
+            *
+ERROR at line 8:
+ORA-06550: line 8, column 13:
+PL/SQL: ORA-00947: not enough values
+ORA-06550: line 8, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> select *  from t11;
+
+NAME            REGNO DOB
+---------- ---------- ---------
+stuti              10 25-DEC-19
+sneh               20 25-DEC-19
+sambhav            20 25-DEC-19
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c1 is select ename sal from emp
+  3  where deptno=10;
+  4  v_name emp.ename%type;
+  5  v_sal emp.sal%type;
+  6  begin
+  7  open c1;
+  8  loop
+  9  fetch c1 into v_name,v_sal;
+ 10  exit when c1%notfound;
+ 11  dbms_output.put_line(v_name||v_sal);
+ 12  end loop;
+ 13  close c1;
+ 14* end;
+SQL> /
+fetch c1 into v_name,v_sal;
+*
+ERROR at line 9:
+ORA-06550: line 9, column 1:
+PLS-00394: wrong number of values in the INTO list of a FETCH statement
+ORA-06550: line 9, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c1 is select ename,sal from emp
+  3  where deptno=10;
+  4  v_name emp.ename%type;
+  5  v_sal emp.sal%type;
+  6  begin
+  7  open c1;
+  8  loop
+  9  fetch c1 into v_name,v_sal;
+ 10  exit when c1%notfound;
+ 11  dbms_output.put_line(v_name||v_sal);
+ 12  end loop;
+ 13  close c1;
+ 14* end;
+SQL> /
+CLARK2450
+KING5000
+MILLER1300
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c1 is select * from emp
+  3  where deptno=10;
+  4  v_emprec emp%rowtype;
+  5  begin
+  6  open c1;
+  7  loop
+  8  fetch c1 into v_emprec;
+  9  exit when c1%notfound;
+ 10  dbms_output.put_line(v_emprec.ename||v_emprec.sal||v_emprec.job);
+ 11  end loop;
+ 12  close c1;
+ 13* end;
+SQL> /
+CLARK2450MANAGER
+KING5000PRESIDENT
+MILLER1300CLERK
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c1 is select * from emp
+  3  where deptno=10;
+  4  v_emprec emp%rowtype;
+  5  begin
+  6  if not c1%isopen then
+  7  open c1;
+  8  end if;
+  9  loop
+ 10  fetch c1 into v_emprec;
+ 11  exit when c1%notfound and c1%rowcount>=5;
+ 12  dbms_output.put_line(v_emprec.ename||v_emprec.sal||v_emprec.job);
+ 13  end loop;
+ 14  close c1;
+ 15* end;
+SQL> /
+
+
+SQL*Plus: Release 11.2.0.1.0 Production on Fri Dec 27 01:46:05 2019
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: scott
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> select *;
+select *
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c_ord_cursor is
+  3  select empno,hiredate from emp
+  4  where deptno=10;
+  5  begin
+  6     for emp_record in c_ord_cursor
+  7     loop
+  8             dbms_output.put_line(emp_record.empno||' '||emp_record.hiredate);
+  9     end loop;
+ 10* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c_ord_cursor is
+  3  select empno,hiredate from emp
+  4  where deptno=10;
+  5  begin
+  6     for emp_record in c_ord_cursor
+  7     loop
+  8             dbms_output.put_line(emp_record.empno||' '||emp_record.hiredate);
+  9     end loop;
+ 10* end;
+SQL> /
+7782 09-JUN-81
+7839 17-NOV-81
+7934 23-JAN-82
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  begin
+  3  for emp_record in (select empno,hiredate from emp where deptno=10)
+  4             loop
+  5             dbms_output.put_line(emp_record.empno||' '||emp_record.hiredate);
+  6             end loop;
+  7* end;
+SQL> /
+7782 09-JUN-81
+7839 17-NOV-81
+7934 23-JAN-82
+
+PL/SQL procedure successfully completed.
+
+SQL>
