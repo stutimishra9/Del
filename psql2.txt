@@ -1,0 +1,477 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Fri Dec 27 01:46:05 2019
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: scott
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> select *;
+select *
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c_ord_cursor is
+  3  select empno,hiredate from emp
+  4  where deptno=10;
+  5  begin
+  6     for emp_record in c_ord_cursor
+  7     loop
+  8             dbms_output.put_line(emp_record.empno||' '||emp_record.hiredate);
+  9     end loop;
+ 10* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor c_ord_cursor is
+  3  select empno,hiredate from emp
+  4  where deptno=10;
+  5  begin
+  6     for emp_record in c_ord_cursor
+  7     loop
+  8             dbms_output.put_line(emp_record.empno||' '||emp_record.hiredate);
+  9     end loop;
+ 10* end;
+SQL> /
+7782 09-JUN-81
+7839 17-NOV-81
+7934 23-JAN-82
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  begin
+  3  for emp_record in (select empno,hiredate from emp where deptno=10)
+  4             loop
+  5             dbms_output.put_line(emp_record.empno||' '||emp_record.hiredate);
+  6             end loop;
+  7* end;
+SQL> /
+7782 09-JUN-81
+7839 17-NOV-81
+7934 23-JAN-82
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_name
+  6  from emp
+  7  where deptno=v_deptno;
+  8* end;
+SQL> /
+Enter value for v_deptno: 10
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=10;
+select ename into v_name
+                  *
+ERROR at line 5:
+ORA-06550: line 5, column 19:
+PLS-00201: identifier 'V_NAME' must be declared
+ORA-06550: line 5, column 26:
+PL/SQL: ORA-00904: : invalid identifier
+ORA-06550: line 5, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_ename
+  6  from emp
+  7  where deptno=v_deptno;
+  8* end;
+SQL> /
+Enter value for v_deptno: 10
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=10;
+declare
+*
+ERROR at line 1:
+ORA-01422: exact fetch returns more than requested number of rows
+ORA-06512: at line 5
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_ename
+  6  from emp
+  7  where deptno=v_deptno;
+  8  exception
+  9  when_too_many_rows then
+ 10  dbms_output.put_line('many rows');
+ 11  when_no_data_found then
+ 12  dbms_output.put_line('no value');
+ 13* end;
+SQL> /
+Enter value for v_deptno: 10
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=10;
+when_too_many_rows then
+*
+ERROR at line 9:
+ORA-06550: line 9, column 1:
+PLS-00103: Encountered the symbol "WHEN_TOO_MANY_ROWS" when expecting one of
+the following:
+pragma when
+The symbol "when" was substituted for "WHEN_TOO_MANY_ROWS" to continue.
+ORA-06550: line 11, column 20:
+PLS-00103: Encountered the symbol "THEN" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 13, column 4:
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the
+following:
+end not pragma final instantiable order overriding static
+member constructor map
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_ename
+  6  from emp
+  7  where deptno=v_deptno;
+  8  exception
+  9  when_too_many_rows then
+ 10  dbms_output.put_line('many rows');
+ 11  when_no_data_found then
+ 12  dbms_output.put_line('no value');
+ 13* end;
+SQL> /
+Enter value for v_deptno: 10
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=10;
+when_too_many_rows then
+*
+ERROR at line 9:
+ORA-06550: line 9, column 1:
+PLS-00103: Encountered the symbol "WHEN_TOO_MANY_ROWS" when expecting one of
+the following:
+pragma when
+The symbol "when" was substituted for "WHEN_TOO_MANY_ROWS" to continue.
+ORA-06550: line 11, column 20:
+PLS-00103: Encountered the symbol "THEN" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 13, column 4:
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the
+following:
+end not pragma final instantiable order overriding static
+member constructor map
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_ename
+  6  from emp
+  7  where deptno=v_deptno;
+  8  exception
+  9  when too_many_rows then
+ 10  dbms_output.put_line('many rows');
+ 11  when_no_data_found then
+ 12  dbms_output.put_line('no value');
+ 13* end;
+SQL> /
+Enter value for v_deptno: 1
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=1;
+when_no_data_found then
+                   *
+ERROR at line 11:
+ORA-06550: line 11, column 20:
+PLS-00103: Encountered the symbol "THEN" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 13, column 4:
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the
+following:
+end not pragma final instantiable order overriding static
+member constructor map
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_ename
+  6  from emp
+  7  where deptno=v_deptno;
+  8  exception
+  9  when too_many_rows then
+ 10  dbms_output.put_line('many rows');
+ 11  when no_data_found then
+ 12  dbms_output.put_line('no value');
+ 13* end;
+SQL> /
+Enter value for v_deptno: 10
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=10;
+many rows
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for v_deptno: 1
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=1;
+no value
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_ename
+  6  from emp
+  7  where deptno=v_deptno;
+  8  exception
+  9  /*when too_many_rows then
+ 10  dbms_output.put_line('many rows');
+ 11  when no_data_found then
+ 12  dbms_output.put_line('no value');*/
+ 13  when others then
+ 14  dbms_output.put_line('an error has occured');
+ 15* end;
+SQL> /
+Enter value for v_deptno: 10
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=10;
+an error has occured
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  v_deptno emp.deptno%type:=&v_deptno;
+  3  v_ename emp.ename%type;
+  4  begin
+  5  select ename into v_ename
+  6  from emp
+  7  where deptno=v_deptno;
+  8  exception
+  9  when too_many_rows then
+ 10  dbms_output.put_line('many rows');
+ 11  dbms_output.put_line(sqlerrm);
+ 12  when no_data_found then
+ 13  dbms_output.put_line('no value');
+ 14  when others then
+ 15  dbms_output.put_line('an error has occured');
+ 16* end;
+SQL> /
+Enter value for v_deptno: 10
+old   2: v_deptno emp.deptno%type:=&v_deptno;
+new   2: v_deptno emp.deptno%type:=10;
+many rows
+ORA-01422: exact fetch returns more than requested number of rows
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  e1 exception;
+  3  pragma exception_init(e1,-02292);
+  4  begin
+  5  insert into dept
+  6  (deptno,dept_name) val(280,NULL);
+  7  exception
+  8  when e_insert_excep then
+  9     dbms_output.put_line('insert operation failed');
+ 10     dbms_output.put_line(sqlerrm);
+ 11* end;
+SQL> /
+(deptno,dept_name) val(280,NULL);
+                   *
+ERROR at line 6:
+ORA-06550: line 6, column 20:
+PL/SQL: ORA-00926: missing VALUES keyword
+ORA-06550: line 5, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  e1 exception;
+  3  pragma exception_init(e1,-02292);
+  4  begin
+  5  insert into dept
+  6  (deptno,dept_name) val(10,NULL);
+  7  exception
+  8  when e_insert_excep then
+  9     dbms_output.put_line('insert operation failed');
+ 10     dbms_output.put_line(sqlerrm);
+ 11* end;
+SQL> /
+(deptno,dept_name) val(10,NULL);
+                   *
+ERROR at line 6:
+ORA-06550: line 6, column 20:
+PL/SQL: ORA-00926: missing VALUES keyword
+ORA-06550: line 5, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  e1 EXCEPTION;
+  3  PRAGMA EXCEPTION_INIT(e1,-01400);
+  4  begin
+  5  insert into dept (deptno,dept_name) val(NULL,'CUSTOM DEPT','SAN FRANCISCO');
+  6  exception
+  7  when e_insert_excep then
+  8     dbms_output.put_line('insert operation failed');
+  9     dbms_output.put_line(sqlerrm);
+ 10* end;
+SQL> /
+insert into dept (deptno,dept_name) val(NULL,'CUSTOM DEPT','SAN FRANCISCO');
+                                    *
+ERROR at line 5:
+ORA-06550: line 5, column 37:
+PL/SQL: ORA-00926: missing VALUES keyword
+ORA-06550: line 5, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  e1 EXCEPTION;
+  3  PRAGMA EXCEPTION_INIT(e1,-01400);
+  4  begin
+  5  insert into dept (deptno,dname,loc) values(NULL,'CUSTOM DEPT','SAN FRANCISCO');
+  6  EXCEPTION
+  7  when e_insert_excep then
+  8     dbms_output.put_line('insert operation failed');
+  9     dbms_output.put_line(sqlerrm);
+ 10* end;
+SQL> /
+when e_insert_excep then
+     *
+ERROR at line 7:
+ORA-06550: line 7, column 6:
+PLS-00201: identifier 'E_INSERT_EXCEP' must be declared
+ORA-06550: line 0, column 0:
+PL/SQL: Compilation unit analysis terminated
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  e_insert_excep EXCEPTION;
+  3  PRAGMA EXCEPTION_INIT(e1,-01400);
+  4  begin
+  5  insert into dept (deptno,dname,loc) values(NULL,'CUSTOM DEPT','SAN FRANCISCO');
+  6  EXCEPTION
+  7  when e_insert_excep then
+  8     dbms_output.put_line('insert operation failed');
+  9     dbms_output.put_line(sqlerrm);
+ 10* end;
+SQL> /
+PRAGMA EXCEPTION_INIT(e1,-01400);
+                      *
+ERROR at line 3:
+ORA-06550: line 3, column 23:
+PLS-00109: unknown exception name 'E1' in PRAGMA EXCEPTION_INIT
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  e_insert_excep EXCEPTION;
+  3  PRAGMA EXCEPTION_INIT(e_insert_excep,-01400);
+  4  begin
+  5  insert into dept(deptno,dname,loc) values(NULL,'CUSTOM DEPT','SAN FRANCISCO');
+  6  EXCEPTION
+  7  when e_insert_excep then
+  8     dbms_output.put_line('insert operation failed');
+  9     dbms_output.put_line(sqlerrm);
+ 10* end;
+SQL> /
+insert operation failed
+ORA-01400: cannot insert NULL into ("SCOTT"."DEPT"."DEPTNO")
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  e_insert_excep EXCEPTION;
+  3  PRAGMA EXCEPTION_INIT(e_insert_excep,-01722);
+  4  begin
+  5  delete from dept where deptno='A';
+  6  EXCEPTION
+  7  when e_insert_excep then
+  8     dbms_output.put_line('delete operation failed');
+  9     dbms_output.put_line(sqlerrm);
+ 10* end;
+SQL> /
+delete operation failed
+ORA-01722: invalid number
+
+PL/SQL procedure successfully completed.
+
+SQL>
