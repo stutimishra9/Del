@@ -1,0 +1,21 @@
+class Animal1{
+	void eats() {System.out.println("eats");}
+}
+
+class Dog1 extends Animal1{
+	void barks() {System.out.println("barks");}
+}
+
+class You extends Dog1{
+	void hey() {System.out.println("Ypu");}
+}
+public class I3 {
+	public static void main(String args[])
+	{
+		You ob=new You();
+		ob.hey();
+		ob.barks();
+		ob.eats();
+	}
+
+}
