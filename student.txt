@@ -1,0 +1,15 @@
+
+public class Student {
+
+	int id=1001;
+	String name="Stuti";
+	
+	public static void main(String args[])
+	{
+		Student s1=new Student();
+		
+		System.out.println(s1.id);
+		System.out.println(s1.name);
+		System.out.println("id is "+s1.id+" and name is "+s1.name);
+	}
+}

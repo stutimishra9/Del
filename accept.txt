@@ -1,0 +1,26 @@
+import java.util.Scanner;
+class Cal{
+	int a,b,sum;
+	void add(int x,int y)
+	{
+		a=x;
+		b=y;
+		sum=a+b;
+		//return(sum);
+	}
+}
+public class Accept {
+
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int num1,num2,total;
+		
+		Cal c=new Cal();
+		num1=sc.nextInt();
+		num2=sc.nextInt();
+		c.add(num1,num2);
+		
+		System.out.println(c.sum);
+	}
+}

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+public class Fact {
+
+	int func(int j)
+	{
+		int n=j,f=1,i,r;
+		for(i=n;i>0;i--)
+		{
+			f=n*(n-1);
+		}
+		return f;
+	}
+	
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int a;
+		System.out.println("Enter a number: ");
+		a=sc.nextInt();
+		Fact ob=new Fact();
+		System.out.println(ob.func(a));
+	}
+}

@@ -1,0 +1,15 @@
+import java.util.*;
+public class Count {
+
+	static int noofobjs=0;
+	Count()
+	{
+		noofobjs++;
+	}
+	public static void main(String args[])
+	{
+		Count ob=new Count();
+		System.out.println("Count is "+noofobjs);  
+	}
+	
+}

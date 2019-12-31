@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Small1 {
+
+	int func1(int a,int b,int c)
+	{
+		int x,y,z,s;
+		x=a;y=b;z=c;
+		if(x<y && x<z)
+		{
+			s=x;
+		}
+		else if(y<x && y<z)
+		{
+			s=y;
+		}
+		else
+		{
+			s=z;
+		}
+		return s;
+	}
+	
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter 3 numbers: ");
+		int a,b,c,sm;
+		a=sc.nextInt();
+		b=sc.nextInt();
+		c=sc.nextInt();
+		Small1 ob=new Small1();
+		sm=ob.func1(a,b,c);
+		System.out.println(sm);
+	}
+}

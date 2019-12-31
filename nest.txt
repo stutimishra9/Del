@@ -1,0 +1,32 @@
+class Seq{
+	void func1()
+	 {
+		int i;
+		int j;
+	 		
+		for(i=1;i<=5;i++)
+		{
+			for(j=1;j<=i;j++)
+			{
+				if(i%2!=0)
+				{
+					System.out.print("*");
+				}
+				else
+				{
+					System.out.print("+");
+				}	
+			}
+			System.out.println();
+		}
+	 }
+		}
+public class Nest {
+		//int i;
+		//int j;
+	public static void main(String args[])
+	{
+		Seq s=new Seq();
+		s.func1();
+	}
+}
