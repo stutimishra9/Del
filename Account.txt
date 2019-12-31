@@ -1,0 +1,39 @@
+import java.util.Scanner;
+//import java.io.*;
+public class Account {
+
+	int Accno;
+	String name;
+	int Phone_No;
+	float balance_amt=0;
+	
+	Scanner sc=new Scanner(System.in);
+	public void getinput()
+	{
+		System.out.println("Enter the Accountno, name and phone respectively: ");
+		Accno=sc.nextInt();
+		name=sc.next();
+		Phone_No=sc.nextInt();
+		//ob.balance=sc.hasNextInt();
+	}
+	
+	public void Deposit()
+	{
+		System.out.println("Enter the amount to be deposited: ");
+		balance_amt=balance_amt+sc.nextInt();
+	}
+	
+	public void Withdraw()
+	{
+		System.out.println("amount="+balance_amt);
+	}
+	
+	public static void main(String args[])
+	{
+		Account ob=new Account();
+		ob.getinput();
+		ob.Deposit();
+		ob.Withdraw();
+	}
+
+}
