@@ -1,0 +1,12 @@
+class Employee{
+	float salary=1000;
+}
+public class Programmer extends Employee {
+
+		int bonus=100;
+		public static void main(String args[])
+		{
+			Programmer ob=new Programmer();
+			System.out.println(ob.salary+ob.bonus);
+		}
+}
