@@ -1,0 +1,78 @@
+SQL> select deptno,sal,ename,hiredate from emp
+  2  union
+  3  select deptno,to_number(null),to_char(null),to_date(null) from dept;
+
+    DEPTNO        SAL ENAME      HIREDATE
+---------- ---------- ---------- ---------
+        10       1300 MILLER     23-JAN-82
+        10       2450 CLARK      09-JUN-81
+        10       5000 KING       17-NOV-81
+        10
+        20        800 SMITH      17-DEC-80
+        20       1100 ADAMS      23-MAY-87
+        20       2975 JONES      02-APR-81
+        20       3000 FORD       03-DEC-81
+        20       3000 SCOTT      19-APR-87
+        20
+        30        950 JAMES      03-DEC-81
+
+    DEPTNO        SAL ENAME      HIREDATE
+---------- ---------- ---------- ---------
+        30       1250 MARTIN     28-SEP-81
+        30       1250 WARD       22-FEB-81
+        30       1500 TURNER     08-SEP-81
+        30       1600 ALLEN      20-FEB-81
+        30       2850 BLAKE      01-MAY-81
+        30
+        40
+
+18 rows selected.
+
+SQL> select 'to sing',2 from dual
+  2  union
+  3  select 'i like',1 from dual
+  4  union
+  5  select 'a song',3 from dual
+  6  order by 2
+  7  ;
+
+'TOSING          2
+------- ----------
+i like           1
+to sing          2
+a song           3
+
+SQL> select rowid from dept;
+
+ROWID
+------------------
+AAAR3qAAEAAAACHAAA
+AAAR3qAAEAAAACHAAB
+AAAR3qAAEAAAACHAAC
+AAAR3qAAEAAAACHAAD
+
+SQL> select rowid,ename from emp;
+
+ROWID              ENAME
+------------------ ----------
+AAAR3sAAEAAAACXAAA SMITH
+AAAR3sAAEAAAACXAAB ALLEN
+AAAR3sAAEAAAACXAAC WARD
+AAAR3sAAEAAAACXAAD JONES
+AAAR3sAAEAAAACXAAE MARTIN
+AAAR3sAAEAAAACXAAF BLAKE
+AAAR3sAAEAAAACXAAG CLARK
+AAAR3sAAEAAAACXAAH SCOTT
+AAAR3sAAEAAAACXAAI KING
+AAAR3sAAEAAAACXAAJ TURNER
+AAAR3sAAEAAAACXAAK ADAMS
+
+ROWID              ENAME
+------------------ ----------
+AAAR3sAAEAAAACXAAL JAMES
+AAAR3sAAEAAAACXAAM FORD
+AAAR3sAAEAAAACXAAN MILLER
+
+14 rows selected.
+
+SQL>
