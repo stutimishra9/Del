@@ -1,0 +1,4 @@
+load data infile 'first.dat' into 
+table first fields
+terminated by ',' 
+(empno,name,sal)

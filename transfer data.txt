@@ -1,0 +1,80 @@
+Microsoft Windows [Version 10.0.16299.64]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Users\4103>cd desktop
+
+C:\Users\4103\Desktop>sqlldr scott/tiger control=first.crtl
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Jan 1 22:58:39 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+SQL*Loader-500: Unable to open file (first.crtl)
+SQL*Loader-553: file not found
+SQL*Loader-509: System error: The system cannot find the file specified.
+
+C:\Users\4103\Desktop>sqlldr scott/tiger control=first.crtl
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Jan 1 22:59:18 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+SQL*Loader-350: Syntax error at line 3.
+Illegal combination of non-alphanumeric characters
+terminated by ',' (empno,name,sal);
+                                  ^
+
+C:\Users\4103\Desktop>sqlldr scott/tiger control=first.crtl
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Jan 1 22:59:30 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+SQL*Loader-500: Unable to open file (first.dat)
+SQL*Loader-553: file not found
+SQL*Loader-509: System error: The system cannot find the file specified.
+SQL*Loader-2026: the load was aborted because SQL Loader cannot continue.
+
+C:\Users\4103\Desktop>sqlldr scott/tiger control=first.crtl
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Jan 1 22:59:49 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+SQL*Loader-500: Unable to open file (first.dat)
+SQL*Loader-553: file not found
+SQL*Loader-509: System error: The system cannot find the file specified.
+SQL*Loader-2026: the load was aborted because SQL Loader cannot continue.
+
+C:\Users\4103\Desktop>sqlldr scott/tiger control=first.crtl
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Jan 1 23:00:25 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+SQL*Loader-500: Unable to open file (first.dat)
+SQL*Loader-553: file not found
+SQL*Loader-509: System error: The system cannot find the file specified.
+SQL*Loader-2026: the load was aborted because SQL Loader cannot continue.
+
+C:\Users\4103\Desktop>sqlldr scott/tiger control=first.crtl
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Jan 1 23:01:19 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+SQL*Loader-500: Unable to open file (first.dat)
+SQL*Loader-553: file not found
+SQL*Loader-509: System error: The system cannot find the file specified.
+SQL*Loader-2026: the load was aborted because SQL Loader cannot continue.
+
+C:\Users\4103\Desktop>sqlldr scott/tiger control=first.crtl
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Jan 1 23:04:08 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Commit point reached - logical record count 6
+Commit point reached - logical record count 7
+
+C:\Users\4103\Desktop>
