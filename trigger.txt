@@ -1,0 +1,98 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Fri Jan 3 22:24:32 2020
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> select *;
+select *
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  Cursor c1 is select * from dept;
+  3  Cursor c2(pdno number) is select * from emp where deptno=&pdno;
+  4  Begin
+  5  for vdep in c1
+  6  Loop
+  7  Dbms_output.put_line('----');
+  8  Dbms_output.put_line(vdep.deptno||''||vdep.dname);
+  9  Dbms_output.put_line('----');
+ 10  For erec in c2(vdep.deptno)
+ 11  Loop
+ 12  Dbms_output.put_line(erec.empno||''||erec.ename||''||erec.deptno);
+ 13  End loop;
+ 14  End loop;
+ 15* End;
+SQL> /
+Enter value for pdno: 950
+old   3: Cursor c2(pdno number) is select * from emp where deptno=&pdno;
+new   3: Cursor c2(pdno number) is select * from emp where deptno=950;
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput;
+SP2-0265: serveroutput must be set ON or OFF
+SQL> set serveroutput on;
+SQL> /
+Enter value for pdno: 950
+old   3: Cursor c2(pdno number) is select * from emp where deptno=&pdno;
+new   3: Cursor c2(pdno number) is select * from emp where deptno=950;
+----
+10ACCOUNTING
+----
+----
+20RESEARCH
+----
+----
+30SALES
+----
+----
+40OPERATIONS
+----
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for pdno: 10
+old   3: Cursor c2(pdno number) is select * from emp where deptno=&pdno;
+new   3: Cursor c2(pdno number) is select * from emp where deptno=10;
+----
+10ACCOUNTING
+----
+7782CLARK10
+7839KING10
+7934MILLER10
+----
+20RESEARCH
+----
+7782CLARK10
+7839KING10
+7934MILLER10
+----
+30SALES
+----
+7782CLARK10
+7839KING10
+7934MILLER10
+----
+40OPERATIONS
+----
+7782CLARK10
+7839KING10
+7934MILLER10
+
+PL/SQL procedure successfully completed.
+
+SQL>

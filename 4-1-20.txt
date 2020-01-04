@@ -1,0 +1,307 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Fri Jan 3 20:15:12 2020
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> create or replace trigger secure_emp before insert on employees begin if(to_char(sysdate,'dy') in ('sat','sun')) or (to_char(sysdate,'HH24:MI') not between '8:00' and '18:00' then raise_application_error(-20500,'You may insert'||'into employees table only during'||'normal business hours.');
+  2  end if;
+  3  end;
+  4  create or replace trigger secure_emp before insert on employees begin if(to_char(sysdate,'dy') in ('sat','sun')) or (to_char(sysdate,'HH24:MI') not between '8:00' and '18:00' then raise_application_error(-20500,'You may insert'||'into employees table only during'||'normal business hours.');
+  5  ed
+  6  ;;
+  7  /
+create or replace trigger secure_emp before insert on employees begin if(to_char(sysdate,'dy') in ('sat','sun')) or (to_char(sysdate,'HH24:MI') not between '8:00' and '18:00' then raise_application_error(-20500,'You may insert'||'into employees table only during'||'normal business hours.');
+                                                      *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create or replace trigger secure_emp before insert on employees begin if(to_char(sysdate,'dy') in ('sat','sun')) or (to_char(sysdate,'HH24:MI') not between '8:00' and '18:00' then raise_application_error(-20500,'You may insert'||'into employees table only during'||'normal business hours.');
+  2  end if;
+  3  end;
+  4  /
+create or replace trigger secure_emp before insert on employees begin if(to_char(sysdate,'dy') in ('sat','sun')) or (to_char(sysdate,'HH24:MI') not between '8:00' and '18:00' then raise_application_error(-20500,'You may insert'||'into employees table only during'||'normal business hours.');
+                                                      *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create or replace trigger secure_emp before insert on emp begin if(to_char(sysdate,'dy') in ('sat','sun')) or (to_char(sysdate,'HH24:MI') not between '8:00' and '18:00' then raise_application_error(-20500,'You may insert'||'into emp table only during'||'normal business hours.');
+  2  end if;
+  3  end;
+  4  /
+
+Warning: Trigger created with compilation errors.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800
+        20
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000
+        20
+
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7902 FORD       ANALYST         7566 03-DEC-81       3000
+        20
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+14 rows selected.
+
+SQL> set pagesize 120;
+SQL> set linesize 120;
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> insert into emp values('1','asd','fws','324','12-jan-20','400',0,30);
+insert into emp values('1','asd','fws','324','12-jan-20','400',0,30)
+            *
+ERROR at line 1:
+ORA-04098: trigger 'SCOTT.SECURE_EMP' is invalid and failed re-validation
+
+
+SQL> create or replace trigger restric_salary before insert or update of salary on emp for each row begin if not(:NEW.job_id in ('AD_PRES','AD_VP')) and :NEW.salary>5000 then RAISE_APPLICATION_ERROR(-20202,'Employee cannot earn more than $5000.');
+  2  end if;
+  3  end;
+  4  /
+create or replace trigger restric_salary before insert or update of salary on emp for each row begin if not(:NEW.job_id in ('AD_PRES','AD_VP')) and :NEW.salary>5000 then RAISE_APPLICATION_ERROR(-20202,'Employee cannot earn more than $5000.');
+                                                                    *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier
+
+
+SQL> create or replace trigger restric_salary before insert or update of sal on emp for each row begin if not(:NEW.job_id in ('AD_PRES','AD_VP')) and :NEW.sal>5000 then RAISE_APPLICATION_ERROR(-20202,'Employee cannot earn more than $5000.');
+  2  end if;
+  3  end;
+  4  /
+
+Warning: Trigger created with compilation errors.
+
+SQL> update emp set sal=5500 where ename='ADAMS';
+update emp set sal=5500 where ename='ADAMS'
+       *
+ERROR at line 1:
+ORA-04098: trigger 'SCOTT.RESTRIC_SALARY' is invalid and failed re-validation
+
+
+SQL> create table audit_emp(user_name varchar2(30),time_stamp date,id number(6),old_last_name varchar2(25),new_last_name varchar2(25),old_title varchar2(10),new_title varchar2(10),old_salary number(8,2),new_salary number(8,2));
+
+Table created.
+
+SQL> desc audit_emp;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ USER_NAME                                                                  VARCHAR2(30)
+ TIME_STAMP                                                                 DATE
+ ID                                                                         NUMBER(6)
+ OLD_LAST_NAME                                                              VARCHAR2(25)
+ NEW_LAST_NAME                                                              VARCHAR2(25)
+ OLD_TITLE                                                                  VARCHAR2(10)
+ NEW_TITLE                                                                  VARCHAR2(10)
+ OLD_SALARY                                                                 NUMBER(8,2)
+ NEW_SALARY                                                                 NUMBER(8,2)
+
+SQL> create or replace trigger audit_emp_values after delete or insert or update on emp for each row begin insert into audit_emp(user_name,time_stamp,id,old_last_name,new_last_name,old_title,new_title,old_salary,new_salary) values(user,sysdate,:OLD.empno,:old.ename,:NEW.ename,:OLD.job,:NEW.job_id,:OLD.salary,:NEW.salary);
+  2  end;
+  3  /
+
+Warning: Trigger created with compilation errors.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> update table emp set sal=1000 where empno=7900;
+update table emp set sal=1000 where empno=7900
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> insert into emp(empno,ename,job,sal) values(120,'stu','manager',500);
+insert into emp(empno,ename,job,sal) values(120,'stu','manager',500)
+            *
+ERROR at line 1:
+ORA-04098: trigger 'SCOTT.SECURE_EMP' is invalid and failed re-validation
+
+
+SQL> insert into emp(empno,ename,job,sal) values(120,'stu','manager',500);
+insert into emp(empno,ename,job,sal) values(120,'stu','manager',500)
+            *
+ERROR at line 1:
+ORA-04098: trigger 'SCOTT.SECURE_EMP' is invalid and failed re-validation
+
+
+SQL> create or replace trigger audit_emp_values after delete or insert or update on emp for each row begin insert into audit_emp(user_name,time_stamp,id,old_last_name,new_last_name,old_title,new_title,old_salary,new_salary) values(user,sysdate,:OLD.empno,:old.ename,:NEW.ename,:OLD.job,:NEW.job_id,:OLD.salary,:NEW.salary);
+  2  /
+
+Warning: Trigger created with compilation errors.
+
+SQL> show errors;
+Errors for TRIGGER AUDIT_EMP_VALUES:
+
+LINE/COL ERROR
+-------- -----------------------------------------------------------------
+1/186    PLS-00049: bad bind variable 'NEW.JOB_ID'
+1/198    PLS-00049: bad bind variable 'OLD.SALARY'
+1/210    PLS-00049: bad bind variable 'NEW.SALARY'
+1/222    PLS-00103: Encountered the symbol "end-of-file" when expecting
+         one of the following:
+         ( begin case declare end exception exit for goto if loop mod
+         null pragma raise return select update while with
+         <an identifier> <a double-quoted delimited-identifier>
+         <a bind variable> << continue close current delete fetch lock
+         insert open rollback savepoint set sql execute commit forall
+         merge pipe purge
+
+SQL> CREATE OR REPLACE TRIGGER audit_emp_valuesBEFORE DELETE OR INSERT OR UPDATE ON empFOR EACH ROWBEGININSERT INTO audit_emp (user_name,time_stamp,id,old_last_name,new_last_name,old_title,new_title,old_salary,new_salary)VALUES(USER,sysdate,:OLD.empno,:old.ename,:new.ename,:old.job,:new.job,:old.sal,:new.sal);END;
+  2  /
+CREATE OR REPLACE TRIGGER audit_emp_valuesBEFORE DELETE OR INSERT OR UPDATE ON empFOR EACH ROWBEGININSERT INTO audit_emp (user_name,time_stamp,id,old_last_name,new_last_name,old_title,new_title,old_salary,new_salary)VALUES(USER,sysdate,:OLD.empno,:old.ename,:new.ename,:old.job,:new.job,:old.sal,:new.sal);END;
+                                                 *
+ERROR at line 1:
+ORA-04071: missing BEFORE, AFTER or INSTEAD OF keyword
+
+
+SQL> CREATE OR REPLACE TRIGGER audit_emp_values BEFORE DELETE OR INSERT OR UPDATE ON emp FOR EACH ROW BEGIN INSERT INTO audit_emp (user_name,time_stamp,id,old_last_name,new_last_name,old_title,new_title,old_salary,new_salary) VALUES(USER,sysdate,:OLD.empno,:old.ename,:new.ename,:old.job,:new.job,:old.sal,:new.sal); END;
+  2  /
+
+Trigger created.
+
+SQL> insert into emp(empno,ename,job,sal) values(120,'stu','manager',500);
+insert into emp(empno,ename,job,sal) values(120,'stu','manager',500)
+            *
+ERROR at line 1:
+ORA-04098: trigger 'SCOTT.SECURE_EMP' is invalid and failed re-validation
+
+
+SQL> update table emp set sal=1000 where empno=7900;
+update table emp set sal=1000 where empno=7900
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> select *;
+select *
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ed
+SP2-0110: Cannot create save file "afiedt.buf"
+SQL> select *;
+select *
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> /
+select *
+       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ed
+SP2-0110: Cannot create save file "afiedt.buf"
+SQL>
