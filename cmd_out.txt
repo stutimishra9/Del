@@ -1,0 +1,39 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 061B-D43A
+
+ Directory of C:\Python Training\bin
+
+07-01-2020  21:54    <DIR>          .
+07-01-2020  21:54    <DIR>          ..
+07-01-2020  20:16               583 comprehensions.py
+06-01-2020  03:43               541 dictionary_ex.py
+07-01-2020  00:44               159 eval_ex.py
+07-01-2020  01:52               994 file_ops.py
+06-01-2020  22:46             1,425 for_ex.py
+07-01-2020  20:30               290 funcs_1.py
+07-01-2020  20:39               195 funcs_2.py
+07-01-2020  20:54               367 funcs_3.py
+07-01-2020  20:56               397 funcs_4.py
+07-01-2020  21:54               553 funcs_5.py
+06-01-2020  21:04               993 if_ex.py
+06-01-2020  02:42             1,186 list_ex.py
+07-01-2020  02:20               487 log_report.csv
+07-01-2020  02:20               489 log_report.txt
+05-01-2020  22:27                 0 New Text Document.txt
+05-01-2020  22:27               522 num_ex.py
+07-01-2020  01:31                24 out1.txt
+07-01-2020  02:20               977 process_log.py
+06-01-2020  03:33               687 set_ex.py
+06-01-2020  01:03             2,040 str_ex.py
+05-01-2020  20:35                26 test.py
+06-01-2020  02:56               250 tuple_ex.py
+06-01-2020  23:19               752 while_ex.py
+              23 File(s)         13,937 bytes
+               2 Dir(s)  918,253,920,256 bytes free
+IPDATEPICSURL
+123.123.123.123	26/Apr/2000	wpaper.gif	http://www.jafsoft.com/asctortf/
+123.123.123.123	26/Apr/2000	No Image	http://search.netscape.com/Computers/Data_Formats/Document/Text/RTF
+123.123.123.123	26/Apr/2000	5star2000.gif	http://www.jafsoft.com/asctortf/
+123.123.123.123	26/Apr/2000	5star.gif	http://www.jafsoft.com/asctortf/
+123.123.123.123	26/Apr/2000	a2hlogo.jpg	http://www.jafsoft.com/asctortf/
+123.123.123.123	26/Apr/2000	No Image	http://www.jafsoft.com/asctortf/
