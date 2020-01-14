@@ -1,3 +1,4 @@
+'''This is a program comprising of concatination of 2 lists and searching of desired element in it using procedures'''
 l1=[1,3,5,16,8]
 l2=[6,5,9,4,13,12]
 l3=l1+l2
